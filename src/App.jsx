@@ -21,10 +21,10 @@ function App() {
 						className=" rounded-full size-10"
 					/>
 				</div>
+				<button className="size-10 border-blue-700 mx-4 border border-solid rounded">
+					<PlusIcon className=" fill-blue-700" />
+				</button>
 			</header>
-			<button className="absolute right-10 size-10 top-28 border-blue-700 border border-solid rounded">
-				<PlusIcon className=" fill-blue-700" />
-			</button>
 		</main>
 	);
 }

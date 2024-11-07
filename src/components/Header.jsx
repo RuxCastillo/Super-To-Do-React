@@ -5,7 +5,7 @@ import {
 } from '@heroicons/react/24/solid';
 import perfil from '../assets/perfil.jpg';
 
-export default function Header() {
+export default function Header({ handleNewNote }) {
 	return (
 		<header className="h-20 w-screen border-b-2 flex items-center p-4 border-gray-300 border-solid relative ">
 			<div className="flex items-center mr-[auto]">
@@ -20,7 +20,10 @@ export default function Header() {
 					className=" rounded-full size-10"
 				/>
 			</div>
-			<button className="size-9 border-blue-700 mx-4 border border-solid rounded shadow-md">
+			<button
+				className="size-9 border-blue-700 mx-4 border border-solid rounded shadow-md"
+				onClick={handleNewNote}
+			>
 				<PlusIcon className=" fill-blue-700" />
 			</button>
 		</header>

@@ -1,15 +1,55 @@
 import Header from './components/Header';
 import Note from './components/Note';
-import Notas from './assets/infoNotas';
+import Modal from './components/Modal';
+
+import { useState } from 'react';
 
 function App() {
+	const [notas, setNotas] = useState({
+		notes: [],
+	});
+
+	function handleNewNote() {
+		const newId = Math.random();
+		const newNote = {
+			id: newId,
+			title: 'Titulo',
+			content: 'escribe aqui el contenido de tu nota',
+		};
+
+		setNotas((prevState) => {
+			return {
+				notes: [...prevState.notes, newNote],
+			};
+		});
+	}
+
+	function handleDeleteNote(id) {
+		setNotas((prevState) => {
+			let actualizado = prevState.notes.filter((note) => note.id !== id);
+
+			console.log('click', actualizado);
+			return {
+				notes: actualizado,
+			};
+		});
+	}
+
 	return (
 		<main className="w-screen relative">
-			<Header />
+			<Header handleNewNote={handleNewNote} />
 
 			<section className="flex flex-wrap mx-10 justify-center">
-				{Notas.map((x) => {
-					return <Note title={x.title} contenido={x.contenido} id={x.id} />;
+				{notas.notes.map((x) => {
+					return (
+						<Note
+							title={x.title}
+							contenido={x.content}
+							key={x.id}
+							id={x.id}
+							handleDeleteNote={handleDeleteNote}
+						/>
+					);
 				})}
 			</section>
 		</main>

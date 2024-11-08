@@ -41,7 +41,7 @@ const Modal = forwardRef(function Modal(
 	return (
 		<dialog
 			ref={dialog}
-			className="w-1/2 h-4/6 m-auto rounded-md border-4 border-solid bg-red-600 border-black p-6"
+			className="w-1/2 h-4/6 m-auto rounded-md border-4 border-solid bg-red-600 border-black p-6 shadow-lg"
 		>
 			<form className="w-full h-full" method="dialog">
 				<input

@@ -16,14 +16,14 @@ export default function Note({
 
 	return (
 		<article
-			className="m-6 w-60 rounded-md p-4 min-h-60 bg-blue-500 "
+			className="m-6 w-60 rounded-md p-4 min-h-60 bg-blue-500 shadow-md"
 			onClick={openModal}
 		>
 			<header className="font-bold text-xl mb-2 flex justify-between">
 				{title}{' '}
 				<span
 					onClick={() => handleDeleteNote(id)}
-					className="font-normal text-sm text-stone-400 hover:text-red-600 cursor-pointer"
+					className="font-normal text-sm text-stone-400 hover:text-red-600 cursor-pointer opacity-50 hover:opacity-80"
 				>
 					Delete
 				</span>

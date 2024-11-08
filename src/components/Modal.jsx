@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 
 const Modal = forwardRef(function Modal(
-	{ title, content, id, notesCompleto },
+	{ title, content, id, handleEditNote },
 	ref
 ) {
 	const [inputs, setInputs] = useState({
@@ -38,17 +38,6 @@ const Modal = forwardRef(function Modal(
 		});
 	}
 
-	function salvarNota(id) {
-		notesCompleto((prevState) => {
-			for (let i = 0; i < prevState.length; i++) {
-				if (id === prevState[i].id) {
-					prevState[i].title = inputs.titulo;
-					prevState[i].content = inputs.contenido;
-				}
-			}
-		});
-	}
-
 	return (
 		<dialog
 			ref={dialog}
@@ -67,7 +56,7 @@ const Modal = forwardRef(function Modal(
 				></textarea>
 				<button
 					className="h-10 w-40 rounded-md bg-stone-400 border-4 absolute bottom-4 right-4 "
-					onClick={() => salvarNota(id)}
+					onClick={() => handleEditNote(id, inputs.titulo, inputs.contenido)}
 				>
 					Guardar Nota
 				</button>

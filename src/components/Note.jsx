@@ -6,7 +6,7 @@ export default function Note({
 	contenido,
 	id,
 	handleDeleteNote,
-	notesCompleto,
+	handleEditNote,
 }) {
 	const dialog = useRef();
 
@@ -34,7 +34,7 @@ export default function Note({
 				title={title}
 				content={contenido}
 				id={id}
-				notesCompleto={notesCompleto}
+				handleEditNote={handleEditNote}
 			/>
 		</article>
 	);

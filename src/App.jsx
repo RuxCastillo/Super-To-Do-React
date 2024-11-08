@@ -1,16 +1,21 @@
 import Header from './components/Header';
 import Note from './components/Note';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function App() {
 	const [notas, setNotas] = useState({
 		notes: [],
 	});
+	const primeraVez = useRef(true);
 	useEffect(() => {
 		recuperarLasNotas();
 	}, []);
 	useEffect(() => {
+		if (primeraVez.current) {
+			primeraVez.current = false;
+			return;
+		}
 		localStorage.setItem('lasNotas', JSON.stringify(notas));
 	}, [notas]);
 
@@ -62,28 +67,29 @@ function App() {
 			console.log(copia.notes[index], 'el creado con la copia');
 			copia.notes[index].title = title;
 			copia.notes[index].content = content;
-			localStorage.setItem('lasNotas', JSON.stringify(copia));
 			return copia;
 		});
 	}
 
 	return (
-		<main className="w-screen relative h-screen">
+		<main className="w-screen relative h-screen ">
 			<Header handleNewNote={handleNewNote} />
 
-			<section className="flex flex-wrap mx-10 justify-center">
-				{notas.notes.map((x) => {
-					return (
-						<Note
-							title={x.title}
-							contenido={x.content}
-							key={x.id}
-							id={x.id}
-							handleDeleteNote={handleDeleteNote}
-							handleEditNote={handleEditNote}
-						/>
-					);
-				})}
+			<section className="flex justify-center w-full mt-3 relative top-24">
+				<div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 mx-2 w-[75%] max-w-[1000px] ">
+					{notas.notes.map((x) => {
+						return (
+							<Note
+								title={x.title}
+								contenido={x.content}
+								key={x.id}
+								id={x.id}
+								handleDeleteNote={handleDeleteNote}
+								handleEditNote={handleEditNote}
+							/>
+						);
+					})}
+				</div>
 			</section>
 		</main>
 	);

@@ -7,7 +7,7 @@ import perfil from '../assets/perfil.jpg';
 
 export default function Header({ handleNewNote }) {
 	return (
-		<header className="h-20 w-screen border-b-2 flex items-center p-4 border-gray-300 border-solid relative ">
+		<header className="h-20 w-screen border-b-2 flex items-center p-4 top-0 border-gray-300 border-solid fixed bg-white z-10">
 			<div className="flex items-center mr-[auto]">
 				<Bars3Icon className="w-8 h-8" />
 				<PencilSquareIcon className="ml-5 w-10 h-10" />

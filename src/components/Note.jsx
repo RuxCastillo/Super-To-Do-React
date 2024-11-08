@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Modal from './Modal';
 
-export default function Note({ title, contenido, id, handleDeleteNote }) {
-	const [modalAbierto, setModalAbierto] = useState(false);
+export default function Note({
+	title,
+	contenido,
+	id,
+	handleDeleteNote,
+	notesCompleto,
+}) {
+	const dialog = useRef();
 
 	function openModal() {
-		setModalAbierto(true);
+		dialog.current.open();
 	}
 
 	return (
@@ -23,7 +29,13 @@ export default function Note({ title, contenido, id, handleDeleteNote }) {
 				</span>
 			</header>
 			<section>{contenido}</section>
-			{modalAbierto && <Modal title={title} content={contenido} id={id} />}
+			<Modal
+				ref={dialog}
+				title={title}
+				content={contenido}
+				id={id}
+				notesCompleto={notesCompleto}
+			/>
 		</article>
 	);
 }

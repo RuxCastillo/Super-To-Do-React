@@ -36,7 +36,7 @@ function App() {
 	}
 
 	return (
-		<main className="w-screen relative">
+		<main className="w-screen relative h-screen">
 			<Header handleNewNote={handleNewNote} />
 
 			<section className="flex flex-wrap mx-10 justify-center">
@@ -48,6 +48,7 @@ function App() {
 							key={x.id}
 							id={x.id}
 							handleDeleteNote={handleDeleteNote}
+							notesCompleto={setNotas}
 						/>
 					);
 				})}

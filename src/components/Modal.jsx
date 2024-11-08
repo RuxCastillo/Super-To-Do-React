@@ -1,10 +1,23 @@
 import { createPortal } from 'react-dom';
 import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 
-export default function Modal({ title, content, id }) {
+const Modal = forwardRef(function Modal(
+	{ title, content, id, notesCompleto },
+	ref
+) {
 	const [inputs, setInputs] = useState({
 		titulo: title,
 		contenido: content,
+	});
+	const dialog = useRef();
+
+	useImperativeHandle(ref, () => {
+		return {
+			open() {
+				dialog.current.showModal();
+			},
+		};
 	});
 
 	function saveTitulo(e) {
@@ -25,29 +38,42 @@ export default function Modal({ title, content, id }) {
 		});
 	}
 
-	function cerrarModal(e) {}
+	function salvarNota(id) {
+		notesCompleto((prevState) => {
+			for (let i = 0; i < prevState.length; i++) {
+				if (id === prevState[i].id) {
+					prevState[i].title = inputs.titulo;
+					prevState[i].content = inputs.contenido;
+				}
+			}
+		});
+	}
 
-	return createPortal(
-		<dialog className="w-screen h-screen flex justify-center items-center m-auto backdrop:bg-stone-900/90 z-10">
-			<form
-				className="w-1/2 h-4/6 bg-red-600 rounded-md border-4 border-solid relative border-black p-6 overflow-auto"
-				method="dialog"
-			>
+	return (
+		<dialog
+			ref={dialog}
+			className="w-1/2 h-4/6 m-auto rounded-md border-4 border-solid bg-red-600 border-black p-6"
+		>
+			<form className="w-full h-full" method="dialog">
 				<input
 					className="font-bold text-2xl mb-3"
-					onChange={() => saveTitulo}
-					defaultValue={inputs.titulo}
+					onChange={saveTitulo}
+					value={inputs.titulo}
 				/>
 				<textarea
 					className="w-full h-[85%] bg-transparent"
-					onChange={() => saveContenido}
-					defaultValue={inputs.contenido}
+					onChange={saveContenido}
+					value={inputs.contenido}
 				></textarea>
-				<button className="h-10 w-40 rounded-md bg-stone-400 border-4 absolute bottom-4 right-4 ">
+				<button
+					className="h-10 w-40 rounded-md bg-stone-400 border-4 absolute bottom-4 right-4 "
+					onClick={() => salvarNota(id)}
+				>
 					Guardar Nota
 				</button>
 			</form>
-		</dialog>,
-		document.getElementById('modal-root')
+		</dialog>
 	);
-}
+});
+
+export default Modal;

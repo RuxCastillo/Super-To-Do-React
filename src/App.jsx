@@ -1,12 +1,23 @@
 import Header from './components/Header';
 import Note from './components/Note';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 	const [notas, setNotas] = useState({
 		notes: [],
 	});
+	useEffect(() => {
+		recuperarLasNotas();
+	}, []);
+
+	function recuperarLasNotas() {
+		let storage = localStorage.getItem('lasNotas');
+		if (storage) {
+			let storageParse = JSON.parse(storage);
+			setNotas(storageParse);
+		}
+	}
 
 	function handleNewNote() {
 		const newId = Math.random();
@@ -48,6 +59,7 @@ function App() {
 			console.log(copia.notes[index], 'el creado con la copia');
 			copia.notes[index].title = title;
 			copia.notes[index].content = content;
+			localStorage.setItem('lasNotas', JSON.stringify(copia));
 			return copia;
 		});
 	}

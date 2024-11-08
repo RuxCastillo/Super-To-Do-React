@@ -10,6 +10,9 @@ function App() {
 	useEffect(() => {
 		recuperarLasNotas();
 	}, []);
+	useEffect(() => {
+		localStorage.setItem('lasNotas', JSON.stringify(notas));
+	}, [notas]);
 
 	function recuperarLasNotas() {
 		let storage = localStorage.getItem('lasNotas');

@@ -38,7 +38,7 @@ const Modal = forwardRef(function Modal(
 		});
 	}
 
-	return (
+	return createPortal(
 		<dialog
 			ref={dialog}
 			className="w-1/2 h-4/6 m-auto rounded-md border-4 border-solid bg-red-600 border-black p-6 shadow-lg"
@@ -61,7 +61,8 @@ const Modal = forwardRef(function Modal(
 					Guardar Nota
 				</button>
 			</form>
-		</dialog>
+		</dialog>,
+		document.getElementById('modal-root')
 	);
 });
 

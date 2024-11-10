@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Note from './components/Note';
+import { colorsArray, colorsObj } from './assets/colors';
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -29,10 +30,13 @@ function App() {
 
 	function handleNewNote() {
 		const newId = Math.random();
+		const newRandomColor = Math.floor(Math.random() * 11);
+		const nombreColor = colorsArray[newRandomColor];
 		const newNote = {
 			id: newId,
 			title: 'Titulo',
 			content: 'escribe aqui el contenido de tu nota',
+			color: colorsObj[nombreColor],
 		};
 
 		setNotas((prevState) => {
@@ -86,6 +90,7 @@ function App() {
 								id={x.id}
 								handleDeleteNote={handleDeleteNote}
 								handleEditNote={handleEditNote}
+								color={x.color}
 							/>
 						);
 					})}

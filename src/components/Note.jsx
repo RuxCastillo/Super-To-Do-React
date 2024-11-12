@@ -24,7 +24,7 @@ export default function Note({
 		});
 	}
 
-	const articleClass = `m-2 mt-0 w-60 rounded-md p-4 pb-1 min-h-60 shadow-md max-h-96 h-fit opacidad-hijos relative`;
+	const articleClass = `m-2 mt-0 w-60 rounded-md p-4 pb-1 min-h-60 shadow-md max-h-96 h-fit opacidad-hijos relative `;
 
 	return (
 		<>

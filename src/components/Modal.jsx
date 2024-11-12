@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 
 const Modal = forwardRef(function Modal(
-	{ title, content, id, handleEditNote },
+	{ title, content, id, handleEditNote, color },
 	ref
 ) {
 	const [inputs, setInputs] = useState({
@@ -19,6 +19,14 @@ const Modal = forwardRef(function Modal(
 			},
 		};
 	});
+
+	/* 	function handleClickOutside(e) {
+		if (e.target === e.currentTarget) {
+			console.log('seactivoif');
+			console.log(dialog.current.close());
+
+		}
+	} */
 
 	function saveTitulo(e) {
 		setInputs((prevState) => {
@@ -41,7 +49,8 @@ const Modal = forwardRef(function Modal(
 	return createPortal(
 		<dialog
 			ref={dialog}
-			className="w-1/2 h-4/6 m-auto rounded-md border-4 border-solid bg-red-600 border-black p-6 shadow-lg"
+			className="w-1/2 h-4/6 m-auto rounded-md border-4 border-solid border-gray-300 p-6 shadow-lg"
+			style={{ backgroundColor: color }}
 		>
 			<form className="w-full h-full" method="dialog">
 				<input

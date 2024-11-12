@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Note from './components/Note';
+import Colores from './components/Colores';
 import { colorsArray, colorsObj } from './assets/colors';
 
 import { useState, useEffect, useRef } from 'react';
@@ -76,7 +77,7 @@ function App() {
 	}
 
 	return (
-		<main className="w-screen relative h-screen ">
+		<main className="w-screen relative h-screen bg-[#f7f7f7]">
 			<Header handleNewNote={handleNewNote} />
 
 			<section className="flex justify-center w-full mt-3 relative top-24">
@@ -96,6 +97,7 @@ function App() {
 					})}
 				</div>
 			</section>
+			<Colores />
 		</main>
 	);
 }

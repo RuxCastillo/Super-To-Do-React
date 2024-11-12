@@ -46,3 +46,7 @@ h6 {
 .hyphens-auto {
 	hyphens: auto;
 }
+
+.opacidad-hijos:hover * {
+	opacity: 1;
+}

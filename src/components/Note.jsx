@@ -42,7 +42,7 @@ export default function Note({
 					</span>
 				</header>
 				<section
-					className="break-words hyphens-auto line-clamp-[14] max-h-72 mb-6"
+					className="break-words hyphens-auto line-clamp-[14] max-h-72 mb-6 min-h-36"
 					onClick={openModal}
 				>
 					{contenido}

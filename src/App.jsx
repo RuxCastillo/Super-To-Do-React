@@ -99,7 +99,7 @@ function App() {
 			<Header handleNewNote={handleNewNote} />
 
 			<section className="flex justify-center w-full mt-3 relative top-24">
-				<div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 mx-2 w-[75%] max-w-[1000px] ">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-rows-[masonry] justify-center">
 					{notas.notes.map((x) => {
 						return (
 							<>

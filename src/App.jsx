@@ -9,6 +9,7 @@ function App() {
 	const [notas, setNotas] = useState({
 		notes: [],
 	});
+	const [coloresVisible, setColoresVisible] = useState(false);
 	const primeraVez = useRef(true);
 	useEffect(() => {
 		recuperarLasNotas();
@@ -84,20 +85,22 @@ function App() {
 				<div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 mx-2 w-[75%] max-w-[1000px] ">
 					{notas.notes.map((x) => {
 						return (
-							<Note
-								title={x.title}
-								contenido={x.content}
-								key={x.id}
-								id={x.id}
-								handleDeleteNote={handleDeleteNote}
-								handleEditNote={handleEditNote}
-								color={x.color}
-							/>
+							<>
+								<Note
+									title={x.title}
+									contenido={x.content}
+									key={x.id}
+									id={x.id}
+									handleDeleteNote={handleDeleteNote}
+									handleEditNote={handleEditNote}
+									color={x.color}
+								/>
+								<Colores />
+							</>
 						);
 					})}
 				</div>
 			</section>
-			<Colores />
 		</main>
 	);
 }

@@ -77,6 +77,23 @@ function App() {
 		});
 	}
 
+	function handleEditColor(newColor, id) {
+		let index;
+		for (let i = 0; i < notas.notes.length; i++) {
+			let encontrada = notas.notes[i];
+			if (encontrada.id === id) {
+				index = i;
+				console.log(id, 'el original que vamos a cambiar index');
+			}
+		}
+		setNotas((prevState) => {
+			const copia = { ...prevState };
+			console.log(copia.notes[index], 'el creado con la copia');
+			copia.notes[index].color = newColor;
+			return copia;
+		});
+	}
+
 	return (
 		<main className="w-screen relative h-screen bg-[#f7f7f7]">
 			<Header handleNewNote={handleNewNote} />
@@ -94,8 +111,8 @@ function App() {
 									handleDeleteNote={handleDeleteNote}
 									handleEditNote={handleEditNote}
 									color={x.color}
+									handleEditColor={handleEditColor}
 								/>
-								<Colores />
 							</>
 						);
 					})}

@@ -1,6 +1,6 @@
 export const colorsObj = {
 	predeterminado: '#fff',
-	coral: 'faafa8',
+	coral: '#faafa8',
 	durazno: '#f39f76',
 	arena: '#fff8b8',
 	menta: '#e2f6d3',
